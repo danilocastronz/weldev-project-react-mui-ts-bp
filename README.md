@@ -4,7 +4,7 @@
 Welcome to the first app template built by Welcome, Developer. This is a React boilerplate built with the purpose of supporting post exercises, and also to provide our followers with a good start point when building web apps. It's a TypeScript application with the Material Design applied and CSS-in-JS.
 
 ## Demo
-Keen to see the app in action? Check it out the [live demo](https://wd-react-app.vercel.app/)!
+Keen to see the app in action? Check it out the [live demo](https://weldev-react-mui-ts.vercel.app/)!
 
 ## Features
 The following frameworks/libraries have been implemented:
