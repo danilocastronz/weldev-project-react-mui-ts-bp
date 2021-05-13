@@ -1,4 +1,4 @@
-# React Boilerplate by Welcome, Developer
+# React, Material-UI boilerplate by Welcome, Developer
 
 ## Introduction
 
