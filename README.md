@@ -10,6 +10,9 @@ Hope you enjoy it, developers!
 
 Keen to see the app in action? Check it out the [live demo](https://weldev-react-mui-ts.vercel.app/)!
 
+## Behind-the-scenes
+Interested in learning how the app was built from scratch step-by-step? Check [it out](https://www.welcomedeveloper.com/react-typescript-material-design), guys!
+
 ## Features
 
 The following frameworks/libraries have been implemented:
