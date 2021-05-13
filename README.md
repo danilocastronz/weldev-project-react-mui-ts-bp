@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to the first app template built by Welcome, Developer! This is a React boilerplate built with the purpose of supporting post exercises, and also to provide our followers with a good start point when building web apps. It's a TypeScript application with the Material Design and CSS-in-JS applied.
+Welcome to the first app template built by Welcome, Developer! This is a boilerplate app built using React, TypeScript, Material-UI, and uses the concept of CSS-in-JS. It has the purpose of supporting our post exercises, but also to provide our followers with a good start point when building React applications.
 
 Hope you enjoy it, developers!
 
