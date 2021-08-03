@@ -1,6 +1,4 @@
-import React, { FC, ReactElement } from "react";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { Link } from "@material-ui/core";
+import { makeStyles, createStyles, Theme, Link } from "@material-ui/core";
 
 // constants
 import { FOOTER_TEXT, FOOTER_HEIGHT } from "../utils/constants";
@@ -22,11 +20,16 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 // functional component
-const Footer: FC<{}> = (): ReactElement => {
+const Footer = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Link href={`${process.env.REACT_APP_API_URL}`} target='_blank' rel="noreferrer" className={classes.footer}>
+      <Link
+        href={`${process.env.REACT_APP_API_URL}`}
+        target="_blank"
+        rel="noreferrer"
+        className={classes.footer}
+      >
         {FOOTER_TEXT}
       </Link>
     </div>

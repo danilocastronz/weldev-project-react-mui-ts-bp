@@ -1,4 +1,4 @@
-# React, Material-UI boilerplate by Welcome, Developer
+# React, TypeScript, and Material-UI boilerplate by Welcome, Developer
 
 ## Introduction
 
@@ -21,6 +21,8 @@ The following frameworks/libraries have been implemented:
 2. [TypeScript](https://www.typescriptlang.org/)
 3. [Material-UI](https://material-ui.com/)
 4. [React Router](https://reactrouter.com/)
+5. [Prettier](https://prettier.io/es)
+6. [ESLint](https://eslint.org/)
 
 ## Install
 
@@ -39,7 +41,12 @@ Contributions are more than welcome to our repository, developers. The goal is t
 ## Versions
 
 - 1.00 - Admin template with sample pages, top bar, navigation menu, and footer.
+- 1.10 - Added Prettier, ESLint, and a bit of code refactoring.
 
 ## Author
 
-- Dan Castro
+- [Dan Castro](https://github.com/danilocastronz)
+
+## Follow Us
+
+Enjoyed the project? Follow us on [LinkedIn](https://www.linkedin.com/company/welcome-developer) and [Twitter](https://twitter.com/welcomedevnz).

@@ -1,12 +1,16 @@
 {
-  "name": "wd-react-app",
-  "version": "1.0.0",
+  "name": "weldev-project-react-mui-ts-bp",
+  "version": "1.1.0",
   "description": "React TypeScript Material-UI boilerplate by Welcome, Developer.",
   "author": {
     "name": "Dan Castro",
     "url": "https://www.welcomedeveloper.com"
   },
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danilocastronz/weldev-project-react-mui-ts-bp",
+    "directory": "weldev-project-react-mui-ts-bp"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
@@ -35,7 +39,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet"
   },
   "eslintConfig": {
     "extends": [
@@ -56,6 +61,13 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.6"
+    "@types/react-router-dom": "^5.1.6",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.3.2"
   }
 }

@@ -1,4 +1,4 @@
-import React, { ReactElement, useReducer, FC } from "react";
+import React, { useReducer } from "react";
 import {
   createMuiTheme,
   Theme,
@@ -27,9 +27,7 @@ import RouteItem from "./model/RouteItem.model";
 const AppContext = React.createContext(null);
 
 // default component
-const DefaultComponent: FC<{}> = (): ReactElement => (
-  <div>{`No Component Defined.`}</div>
-);
+const DefaultComponent = () => <div>No Component Defined.</div>;
 
 function App() {
   const [useDefaultTheme, toggle] = useReducer((theme) => !theme, true);
@@ -49,22 +47,25 @@ function App() {
             <Switch>
               <Layout toggleTheme={toggle} useDefaultTheme={useDefaultTheme}>
                 {/* for each route config, a react route is created */}
-                {routes.map((route: RouteItem) => (
-                  route.subRoutes ? route.subRoutes.map((item: RouteItem) => (
-                    <Route
-                      key={`${item.key}`}
-                      path={`${item.path}`}
-                      component={item.component || DefaultComponent}
-                      exact
-                    />
-                  )) :
+                {routes.map((route: RouteItem) =>
+                  route.subRoutes ? (
+                    route.subRoutes.map((item: RouteItem) => (
+                      <Route
+                        key={`${item.key}`}
+                        path={`${item.path}`}
+                        component={item.component || DefaultComponent}
+                        exact
+                      />
+                    ))
+                  ) : (
                     <Route
                       key={`${route.key}`}
                       path={`${route.path}`}
                       component={route.component || DefaultComponent}
                       exact
                     />
-                ))}
+                  )
+                )}
               </Layout>
             </Switch>
           </Router>

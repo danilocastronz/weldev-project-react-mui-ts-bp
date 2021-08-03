@@ -1,7 +1,11 @@
-import React, { FC, ReactNode, useReducer } from "react";
+import { FC, ReactNode, useReducer } from "react";
 import clsx from "clsx";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  CssBaseline,
+} from "@material-ui/core";
 
 // components
 import Header from "./Header";
@@ -43,14 +47,18 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 // define interface to represent component props
-interface Props {
+interface LayoutProps {
   toggleTheme: () => void;
   useDefaultTheme: boolean;
   children: ReactNode;
 }
 
 // functional component
-const Layout: FC<Props> = ({ toggleTheme, useDefaultTheme, children }) => {
+const Layout: FC<LayoutProps> = ({
+  toggleTheme,
+  useDefaultTheme,
+  children,
+}: LayoutProps) => {
   const classes = useStyles();
   const [open, toggle] = useReducer((open) => !open, true);
   return (

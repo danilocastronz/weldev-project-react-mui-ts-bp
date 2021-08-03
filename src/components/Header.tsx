@@ -1,13 +1,13 @@
-import React, { ReactElement, FC } from "react";
 import clsx from "clsx";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   AppBar,
   Toolbar,
-  CssBaseline,
   Typography,
   IconButton,
   Tooltip,
+  createStyles,
+  makeStyles,
+  Theme,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
@@ -57,65 +57,62 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 // define interface to represent component props
-interface Props {
+interface HeaderProps {
   open: boolean;
   handleMenuOpen: () => void;
   toggleTheme: () => void;
   useDefaultTheme: boolean;
 }
 
-const Header: FC<Props> = ({
+const Header = ({
   open,
   handleMenuOpen,
   toggleTheme,
   useDefaultTheme,
-}): ReactElement => {
+}: HeaderProps) => {
   const classes = useStyles();
   return (
-    <>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        elevation={0}
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar className={classes.toolbar}>
-          <div className={classes.title}>
-            <IconButton
-              color="inherit"
-              aria-label="open menu"
-              onClick={handleMenuOpen}
-              edge="start"
-              className={clsx(classes.menuButton, {
-                [classes.hide]: open,
-              })}
-              size="small"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" noWrap>
-              {APP_TITLE}
-            </Typography>
-          </div>
-          <IconButton onClick={toggleTheme}>
-            {useDefaultTheme ? (
-              <Tooltip title="Switch to dark mode" placement="bottom">
-                <Brightness3Icon />
-              </Tooltip>
-            ) : (
-              <Tooltip title="Switch to light mode" placement="bottom">
-                <Brightness7Icon />
-              </Tooltip>
-            )}
+    <AppBar
+      position="fixed"
+      elevation={0}
+      className={clsx(classes.appBar, {
+        [classes.appBarShift]: open,
+      })}
+    >
+      <Toolbar className={classes.toolbar}>
+        <div className={classes.title}>
+          <IconButton
+            color="inherit"
+            aria-label="open menu"
+            onClick={handleMenuOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open,
+            })}
+            size="small"
+          >
+            <MenuIcon />
           </IconButton>
-          <IconButton size="small" color="inherit">
-            <UserIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </>
+          <Typography variant="h6" noWrap>
+            {APP_TITLE}
+          </Typography>
+        </div>
+        <IconButton onClick={toggleTheme}>
+          {useDefaultTheme ? (
+            <Tooltip title="Switch to dark mode" placement="bottom">
+              <Brightness3Icon />
+            </Tooltip>
+          ) : (
+            <Tooltip title="Switch to light mode" placement="bottom">
+              <Brightness7Icon />
+            </Tooltip>
+          )}
+        </IconButton>
+        <IconButton size="small" color="inherit">
+          <UserIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
   );
 };
 
