@@ -1,6 +1,6 @@
-import React, { FC, ReactElement } from "react";
+import { FC, ReactElement } from "react";
 import { Helmet } from "react-helmet";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 // components
 import PageTitle from "../../components/PageTitle";
@@ -9,7 +9,7 @@ import PageTitle from "../../components/PageTitle";
 import { APP_TITLE, PAGE_TITLE_GH_PUBLIC } from "../../utils/constants";
 
 // define css-in-js
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       flex: 1,
