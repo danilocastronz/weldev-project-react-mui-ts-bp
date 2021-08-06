@@ -21,7 +21,7 @@ The following frameworks/libraries have been implemented:
 2. [TypeScript](https://www.typescriptlang.org/)
 3. [Material-UI](https://material-ui.com/)
 4. [React Router](https://reactrouter.com/)
-5. [Prettier](https://prettier.io/es)
+5. [Prettier](https://prettier.io)
 6. [ESLint](https://eslint.org/)
 
 ## Install
