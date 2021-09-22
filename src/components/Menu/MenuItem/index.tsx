@@ -1,21 +1,11 @@
 import React from "react";
 import clsx from "clsx";
-import {
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Icon,
-  Tooltip,
-  IconButton,
-  makeStyles,
-  Theme,
-  createStyles,
-} from "@material-ui/core";
 import DefaultIcon from "@material-ui/icons/FileCopy";
 import { NavLink, useLocation } from "react-router-dom";
 
 // models
-import RouteItem from "../model/RouteItem.model";
+import RouteItem from "../../../model/RouteItem.model";
+import { ListItem, Tooltip } from "@mui/material";
 
 // define css-in-js
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,9 +28,7 @@ interface MenuItemProps {
   route: RouteItem;
 }
 
-// functional component
-const MenuItem = ({ route }: MenuItemProps) => {
-  const classes = useStyles();
+export const MenuItem = ({ route }: MenuItemProps) => {
   const location = useLocation();
 
   const handleNavigate = (
@@ -59,7 +47,7 @@ const MenuItem = ({ route }: MenuItemProps) => {
         [classes.listItemDisabled]: !route.enabled,
       })}
     >
-      <Tooltip title={route.tooltip || ""} placement="right">
+      <Tooltip title={route.tooltip ?? ""} placement="right">
         <ListItem button disabled={!route.enabled}>
           <ListItemIcon>
             <IconButton
@@ -77,5 +65,3 @@ const MenuItem = ({ route }: MenuItemProps) => {
     </NavLink>
   );
 };
-
-export default MenuItem;

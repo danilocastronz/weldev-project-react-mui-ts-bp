@@ -12,7 +12,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import AppMenu from "./AppMenu";
 
 // constants
-import { DRAWER_WIDTH } from "../utils/constants";
+import { DRAWER_WIDTH } from "../../utils/Constants";
 
 // define css-in-js
 const useStyles = makeStyles((theme: Theme) =>

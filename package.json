@@ -1,6 +1,6 @@
 {
   "name": "weldev-project-react-mui-ts-bp",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "React TypeScript Material-UI boilerplate by Welcome, Developer.",
   "author": {
     "name": "Dan Castro",
@@ -12,8 +12,10 @@
     "directory": "weldev-project-react-mui-ts-bp"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.2",
-    "@material-ui/icons": "^4.11.2",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.1",
+    "@mui/material": "^5.0.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

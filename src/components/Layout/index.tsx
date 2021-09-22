@@ -8,12 +8,12 @@ import {
 } from "@material-ui/core";
 
 // components
-import Header from "./Header";
-import Navigation from "./Navigation";
-import Footer from "./Footer";
+import Header from "../Header";
+import Navigation from "../Navigation";
+import Footer from "../Footer";
 
 // constants
-import { DRAWER_WIDTH, FOOTER_HEIGHT } from "../utils/constants";
+import { DRAWER_WIDTH, FOOTER_HEIGHT } from "../../utils/Constants";
 
 // define css-in-js
 const useStyles = makeStyles((theme: Theme) =>

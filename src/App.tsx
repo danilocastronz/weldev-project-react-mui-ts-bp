@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useMemo, useReducer, useState } from "react";
 import {
   createMuiTheme,
   Theme,
@@ -18,10 +18,11 @@ import { lightTheme, darkTheme } from "./theme/appTheme";
 import { routes } from "./config";
 
 // constants
-import { APP_TITLE } from "./utils/constants";
+import { APP_TITLE } from "./utils/Constants";
 
 // interfaces
 import RouteItem from "./model/RouteItem.model";
+import { createTheme } from "@mui/material/styles";
 
 // define app context
 const AppContext = React.createContext(null);
@@ -31,10 +32,26 @@ const DefaultComponent = () => <div>No Component Defined.</div>;
 
 function App() {
   const [useDefaultTheme, toggle] = useReducer((theme) => !theme, true);
+  const [mode, setMode] = useState<"light" | "dark">("light");
 
-  // define custom theme
-  let theme: Theme = createMuiTheme(useDefaultTheme ? lightTheme : darkTheme);
-  theme = responsiveFontSizes(theme);
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+      },
+    }),
+    []
+  );
+
+  const theme = useMemo(() => {
+    let theme = createTheme({
+      palette: {
+        mode,
+      },
+    });
+    theme = responsiveFontSizes(theme);
+    return theme;
+  }, [mode]);
 
   return (
     <>

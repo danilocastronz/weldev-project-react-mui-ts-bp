@@ -6,7 +6,7 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import PageTitle from "../../components/PageTitle";
 
 // constants
-import { APP_TITLE, PAGE_TITLE_GH_PUBLIC } from "../../utils/constants";
+import { APP_TITLE, PAGE_TITLE_GH_PUBLIC } from "../../utils/Constants";
 
 // define css-in-js
 const useStyles = makeStyles(() =>

@@ -15,7 +15,7 @@ import Brightness3Icon from "@material-ui/icons/Brightness3";
 import UserIcon from "@material-ui/icons/AccountCircle";
 
 // constants
-import { APP_TITLE, DRAWER_WIDTH } from "../utils/constants";
+import { APP_TITLE, DRAWER_WIDTH } from "../../utils/Constants";
 
 // define css-in-js
 const useStyles = makeStyles((theme: Theme) =>
@@ -64,7 +64,7 @@ interface HeaderProps {
   useDefaultTheme: boolean;
 }
 
-const Header = ({
+export const Header = ({
   open,
   handleMenuOpen,
   toggleTheme,
@@ -115,5 +115,3 @@ const Header = ({
     </AppBar>
   );
 };
-
-export default Header;
