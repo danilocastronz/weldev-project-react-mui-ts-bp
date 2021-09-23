@@ -28,33 +28,28 @@ import { routes } from "../config";
 // interfaces
 import RouteItem from "../model/RouteItem.model";
 
-// define css-in-js
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    divider: {
-      marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(1),
-    },
-    nested: {
-      marginLeft: theme.spacing(2),
-    },
-    selected: {
-      transition: "box-shadow",
-      transitionDuration: "1s",
-      boxShadow: `0 0 3px ${theme.palette.primary.main}, 0 0 9px ${theme.palette.primary.main}, 0 0 11px ${theme.palette.primary.main}, 0 0 30px ${theme.palette.primary.main}`,
-    },
-  })
-);
+// const useStyles = makeStyles((theme: Theme) =>
+//   createStyles({
+//     divider: {
+//       marginTop: theme.spacing(1),
+//       marginBottom: theme.spacing(1),
+//     },
+//     nested: {
+//       marginLeft: theme.spacing(2),
+//     },
+//     selected: {
+//       transition: "box-shadow",
+//       transitionDuration: "1s",
+//       boxShadow: `0 0 3px ${theme.palette.primary.main}, 0 0 9px ${theme.palette.primary.main}, 0 0 11px ${theme.palette.primary.main}, 0 0 30px ${theme.palette.primary.main}`,
+//     },
+//   })
+// );
 
-// functional component
-const Menu = () => {
-  const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const location: any = useLocation();
+export const Menu = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const location = useLocation();
 
-  const handleClick = (): void => {
-    setOpen(!open);
-  };
+  const handleClick = () => setOpen((open) => !open);
 
   return (
     <List>
@@ -102,5 +97,3 @@ const Menu = () => {
     </List>
   );
 };
-
-export default Menu;

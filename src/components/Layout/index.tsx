@@ -1,69 +1,59 @@
-import { FC, ReactNode, useReducer } from "react";
+import { FC, useReducer } from "react";
+import styled from "@emotion/styled";
 import clsx from "clsx";
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-  CssBaseline,
-} from "@material-ui/core";
 
 // components
-import Header from "../Header";
-import Navigation from "../Navigation";
-import Footer from "../Footer";
+import { Header } from "../Header";
+import { Navigation } from "../Navigation";
+import { Footer } from "../Footer";
 
 // constants
 import { DRAWER_WIDTH, FOOTER_HEIGHT } from "../../utils/Constants";
 
-// define css-in-js
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flex: 1,
-      display: "flex",
-      flexDirection: "column",
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-      minHeight: `calc(100vh - ${FOOTER_HEIGHT}px)`,
-      background: theme.palette.background.paper,
-      marginLeft: theme.spacing(7) + 1,
-      [theme.breakpoints.up("sm")]: {
-        marginLeft: theme.spacing(9) + 1,
-      },
-    },
-    toolbar: {
-      ...theme.mixins.toolbar,
-    },
-    contentShift: {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: DRAWER_WIDTH,
-    },
-  })
-);
+// // define css-in-js
+// const useStyles = makeStyles((theme: Theme) =>
+//   createStyles({
+//     root: {
+//       flex: 1,
+//       display: "flex",
+//       flexDirection: "column",
+//     },
+//     content: {
+//       flexGrow: 1,
+//       padding: theme.spacing(3),
+//       minHeight: `calc(100vh - ${FOOTER_HEIGHT}px)`,
+//       background: theme.palette.background.paper,
+//       marginLeft: theme.spacing(7) + 1,
+//       [theme.breakpoints.up("sm")]: {
+//         marginLeft: theme.spacing(9) + 1,
+//       },
+//     },
+//     toolbar: {
+//       ...theme.mixins.toolbar,
+//     },
+//     contentShift: {
+//       transition: theme.transitions.create("margin", {
+//         easing: theme.transitions.easing.easeOut,
+//         duration: theme.transitions.duration.enteringScreen,
+//       }),
+//       marginLeft: DRAWER_WIDTH,
+//     },
+//   })
+// );
 
-// define interface to represent component props
 interface LayoutProps {
   toggleTheme: () => void;
   useDefaultTheme: boolean;
-  children: ReactNode;
 }
 
-// functional component
-const Layout: FC<LayoutProps> = ({
+export const Layout: FC<LayoutProps> = ({
   toggleTheme,
   useDefaultTheme,
   children,
 }: LayoutProps) => {
-  const classes = useStyles();
   const [open, toggle] = useReducer((open) => !open, true);
   return (
-    <div className={classes.root}>
-      <CssBaseline />
+    <LayoutWrapper>
       <Header
         open={open}
         handleMenuOpen={toggle}
@@ -76,14 +66,21 @@ const Layout: FC<LayoutProps> = ({
           [classes.contentShift]: open,
         })}
       >
-        <div className={classes.toolbar} />
-        {children}
+        <ChildrenWrapper>{children}</ChildrenWrapper>
       </main>
       <footer>
         <Footer />
       </footer>
-    </div>
+    </LayoutWrapper>
   );
 };
 
-export default Layout;
+const LayoutWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ChildrenWrapper = styled.div`
+  ${(props) => ...props.theme.mixins.toolbar};
+`;
