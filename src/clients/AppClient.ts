@@ -13,7 +13,16 @@ class AppClient implements IAppContext {
    * @memberof AppClient
    */
   constructor() {
-    this.user = {} as User;
+    this.user = {
+      id: "5e8d8hg8h8h8q8faf8g8f8f",
+      name: "John Smith",
+      email: "john.smith@welcomedeveloper.com",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      isAdmin: true,
+      isActive: true,
+      isVerified: true,
+    };
     this.isLoading = false;
     this.setUser = (user: User) => {
       this.user = user;

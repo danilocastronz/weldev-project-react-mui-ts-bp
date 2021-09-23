@@ -1,92 +1,76 @@
-import React, { useMemo, useReducer, useState } from "react";
-import {
-  createMuiTheme,
-  Theme,
-  responsiveFontSizes,
-  ThemeProvider,
-} from "@material-ui/core/styles";
+import { useMemo } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  createTheme,
+  responsiveFontSizes,
+  ThemeProvider as MuiThemeProvider,
+} from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
 import { Helmet } from "react-helmet";
+import { ThemeProvider } from "@emotion/react";
 
-// components
-import Layout from "./components/Layout";
+import { AppContext, ThemeModeContext } from "./contexts";
+import { AppClient, ThemeModeClient } from "./clients";
 
-// theme
-import { lightTheme, darkTheme } from "./theme/appTheme";
+import { Layout, DefaultComponent } from "./components";
 
-// app routes
 import { routes } from "./config";
 
-// constants
 import { APP_TITLE } from "./utils/Constants";
 
-// interfaces
-import RouteItem from "./model/RouteItem.model";
-import { createTheme } from "@mui/material/styles";
-
-// define app context
-const AppContext = React.createContext(null);
-
-// default component
-const DefaultComponent = () => <div>No Component Defined.</div>;
+import { Route as AppRoute } from "./types/Route";
 
 function App() {
-  const [useDefaultTheme, toggle] = useReducer((theme) => !theme, true);
-  const [mode, setMode] = useState<"light" | "dark">("light");
-
-  const colorMode = useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
-      },
-    }),
-    []
-  );
+  const appClient = new AppClient();
+  const themeModeClient = new ThemeModeClient();
 
   const theme = useMemo(() => {
     let theme = createTheme({
       palette: {
-        mode,
+        mode: themeModeClient.themeMode,
       },
     });
     theme = responsiveFontSizes(theme);
     return theme;
-  }, [mode]);
+  }, [themeModeClient.themeMode]);
+
+  const addRoute = (route: AppRoute) => {
+    return (
+      <Route
+        key={route.key}
+        path={route.path}
+        component={route.component || DefaultComponent}
+        exact
+      />
+    );
+  };
 
   return (
     <>
       <Helmet>
         <title>{APP_TITLE}</title>
       </Helmet>
-      <AppContext.Provider value={null}>
-        <ThemeProvider theme={theme}>
-          <Router>
-            <Switch>
-              <Layout toggleTheme={toggle} useDefaultTheme={useDefaultTheme}>
-                {/* for each route config, a react route is created */}
-                {routes.map((route: RouteItem) =>
-                  route.subRoutes ? (
-                    route.subRoutes.map((item: RouteItem) => (
-                      <Route
-                        key={`${item.key}`}
-                        path={`${item.path}`}
-                        component={item.component || DefaultComponent}
-                        exact
-                      />
-                    ))
-                  ) : (
-                    <Route
-                      key={`${route.key}`}
-                      path={`${route.path}`}
-                      component={route.component || DefaultComponent}
-                      exact
-                    />
-                  )
-                )}
-              </Layout>
-            </Switch>
-          </Router>
-        </ThemeProvider>
+      <AppContext.Provider value={appClient}>
+        <ThemeModeContext.Provider value={themeModeClient}>
+          <MuiThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <Router>
+                <Switch>
+                  <Layout>
+                    {routes.map((route: AppRoute) =>
+                      route.subRoutes
+                        ? route.subRoutes.map((item: AppRoute) =>
+                            addRoute(item)
+                          )
+                        : addRoute(route)
+                    )}
+                  </Layout>
+                </Switch>
+              </Router>
+            </ThemeProvider>
+          </MuiThemeProvider>
+        </ThemeModeContext.Provider>
       </AppContext.Provider>
     </>
   );

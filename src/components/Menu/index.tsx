@@ -1,5 +1,4 @@
-import { useState } from "react";
-import clsx from "clsx";
+import { useReducer } from "react";
 import {
   List,
   Divider,
@@ -10,79 +9,41 @@ import {
   Icon,
   Tooltip,
   IconButton,
-  makeStyles,
-  Theme,
-  createStyles,
-} from "@material-ui/core";
-import DefaultIcon from "@material-ui/icons/FileCopy";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import { useLocation } from "react-router-dom";
+} from "@mui/material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
-// components
-import MenuItem from "./MenuItem";
+import { MenuItem } from "./MenuItem";
 
-// app routes
-import { routes } from "../config";
+import { routes } from "../../config";
 
-// interfaces
-import RouteItem from "../model/RouteItem.model";
-
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     divider: {
-//       marginTop: theme.spacing(1),
-//       marginBottom: theme.spacing(1),
-//     },
-//     nested: {
-//       marginLeft: theme.spacing(2),
-//     },
-//     selected: {
-//       transition: "box-shadow",
-//       transitionDuration: "1s",
-//       boxShadow: `0 0 3px ${theme.palette.primary.main}, 0 0 9px ${theme.palette.primary.main}, 0 0 11px ${theme.palette.primary.main}, 0 0 30px ${theme.palette.primary.main}`,
-//     },
-//   })
-// );
+import { Route } from "../../types/Route";
 
 export const Menu = () => {
-  const [open, setOpen] = useState<boolean>(false);
-  const location = useLocation();
-
-  const handleClick = () => setOpen((open) => !open);
+  const [isMenuOpen, toggleMenu] = useReducer((open) => !open, false);
 
   return (
     <List>
-      {routes.map((route: RouteItem) => (
+      {routes.map((route: Route) => (
         <>
           {route.subRoutes ? (
             <>
-              <ListItem button onClick={handleClick}>
+              <ListItem button onClick={toggleMenu}>
                 <ListItemIcon>
-                  <IconButton
-                    className={clsx({
-                      [classes.selected]:
-                        !open &&
-                        route.subRoutes.some(
-                          (item: RouteItem) => item.path === location.pathname
-                        ),
-                    })}
-                    size="small"
-                  >
-                    <Icon component={route.icon || DefaultIcon} />
+                  <IconButton size="small">
+                    {route.icon && <Icon component={route.icon} />}
                   </IconButton>
                 </ListItemIcon>
                 <ListItemText primary={route.title} />
                 <Tooltip
-                  title={`${open ? "Collapse" : "Expand"}`}
+                  title={`${isMenuOpen ? "Collapse" : "Expand"}`}
                   placement="bottom"
                 >
-                  {open ? <ExpandLess /> : <ExpandMore />}
+                  {isMenuOpen ? <ExpandLess /> : <ExpandMore />}
                 </Tooltip>
               </ListItem>
-              <Collapse in={open} timeout="auto" unmountOnExit>
-                <List className={classes.nested}>
-                  {route.subRoutes.map((sRoute: RouteItem) => (
+              <Collapse in={isMenuOpen} timeout="auto" unmountOnExit>
+                <List>
+                  {route.subRoutes.map((sRoute: Route) => (
                     <MenuItem key={`${sRoute.key}`} route={sRoute} />
                   ))}
                 </List>
@@ -91,7 +52,7 @@ export const Menu = () => {
           ) : (
             <MenuItem key={route.key} route={route} />
           )}
-          {route.appendDivider && <Divider className={classes.divider} />}
+          {route.appendDivider && <Divider />}
         </>
       ))}
     </List>

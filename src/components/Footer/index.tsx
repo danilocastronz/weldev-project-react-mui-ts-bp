@@ -18,11 +18,11 @@ export const Footer = () => (
 
 const FooterWrapper = styled.div<{ footerHeight: number }>(
   (props) => `
- flex: 1;
-      display: flex;
-      justify-content: center;
-      background: ${props.theme.palette.background.paper};
-      minHeight: ${props.footerHeight};
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    background: ${props.theme.palette.background.paper};
+    minHeight: ${props.footerHeight};
 `
 );
 

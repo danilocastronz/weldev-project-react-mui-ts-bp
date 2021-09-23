@@ -1,6 +1,6 @@
 // APP TEXT
-export const APP_TITLE = "Welcome, Developer - React App";
-export const FOOTER_TEXT = `${new Date().getFullYear()} Proudly made in New Zealand ♡ by Welcome, Developer`;
+export const APP_TITLE = "Welcome, Developer App";
+export const FOOTER_TEXT = `${new Date().getFullYear()} Proudly made in New Zealand ♡ by Dan Castro`;
 // PAGES TITLE
 export const PAGE_TITLE_HOME = "Home";
 export const PAGE_TITLE_DASHBOARD = "Dashboard";

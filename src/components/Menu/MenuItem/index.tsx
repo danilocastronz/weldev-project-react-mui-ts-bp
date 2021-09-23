@@ -1,31 +1,18 @@
 import React from "react";
-import clsx from "clsx";
-import DefaultIcon from "@material-ui/icons/FileCopy";
+import {
+  Icon,
+  IconButton,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Tooltip,
+} from "@mui/material";
 import { NavLink, useLocation } from "react-router-dom";
 
-// models
-import RouteItem from "../../../model/RouteItem.model";
-import { ListItem, Tooltip } from "@mui/material";
-
-// define css-in-js
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    selected: {
-      transition: "box-shadow",
-      transitionDuration: "1s",
-      boxShadow: `0 0 3px ${theme.palette.primary.main}, 0 0 9px ${theme.palette.primary.main}, 0 0 11px ${theme.palette.primary.main}, 0 0 30px ${theme.palette.primary.main}`,
-    },
-    nested: {
-      marginLeft: theme.spacing(2),
-    },
-    listItemDisabled: {
-      cursor: "not-allowed",
-    },
-  })
-);
+import { Route } from "../../../types/Route";
 
 interface MenuItemProps {
-  route: RouteItem;
+  route: Route;
 }
 
 export const MenuItem = ({ route }: MenuItemProps) => {
@@ -33,8 +20,8 @@ export const MenuItem = ({ route }: MenuItemProps) => {
 
   const handleNavigate = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ): void => {
-    if (!route.enabled) e.preventDefault();
+  ) => {
+    if (!route.isEnabled) e.preventDefault();
   };
 
   return (
@@ -43,20 +30,12 @@ export const MenuItem = ({ route }: MenuItemProps) => {
       style={{ textDecoration: "none", color: "inherit" }}
       key={route.key}
       onClick={handleNavigate}
-      className={clsx({
-        [classes.listItemDisabled]: !route.enabled,
-      })}
     >
-      <Tooltip title={route.tooltip ?? ""} placement="right">
-        <ListItem button disabled={!route.enabled}>
+      <Tooltip title={route.description ?? ""} placement="right">
+        <ListItem button disabled={!route.isEnabled}>
           <ListItemIcon>
-            <IconButton
-              className={clsx({
-                [classes.selected]: location.pathname === route.path,
-              })}
-              size="small"
-            >
-              <Icon component={route.icon || DefaultIcon} />
+            <IconButton size="small">
+              {route.icon && <Icon component={route.icon} />}
             </IconButton>
           </ListItemIcon>
           <ListItemText primary={route.title} />

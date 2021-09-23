@@ -10,13 +10,15 @@
     "rules": {
         "react/prop-types": 0,
         "react/react-in-jsx-scope": 0,
-        "import/no-unresolved": 0
+        "import/no-unresolved": 0,
+        "no-unused-vars": 0
     },
     "plugins": [
         "react",
         "import",
         "jsx-a11y"
     ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 2021,
         "sourceType": "module",

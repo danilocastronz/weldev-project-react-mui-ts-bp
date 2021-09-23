@@ -1,12 +1,11 @@
-import clsx from "clsx";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-
 // components
-import AppMenu from "./AppMenu";
+import { Menu } from "../Menu";
 
 // constants
 import { DRAWER_WIDTH } from "../../utils/Constants";
-import { Drawer } from "@mui/material";
+
+import { Drawer, IconButton } from "@mui/material";
+import { ChevronLeft } from "@mui/icons-material";
 
 // // define css-in-js
 // const useStyles = makeStyles((theme: Theme) =>
@@ -64,11 +63,11 @@ export const Navigation = ({ open, handleMenuClose }: NavigationProps) => (
     //   }),
     // }}
   >
-    <div className={classes.toolbar}>
+    <div>
       <IconButton onClick={handleMenuClose}>
-        <ChevronLeftIcon htmlColor="#fff" />
+        <ChevronLeft htmlColor="#fff" />
       </IconButton>
     </div>
-    <AppMenu />
+    <Menu />
   </Drawer>
 );
