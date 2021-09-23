@@ -49,4 +49,4 @@ Contributions are more than welcome to our repository, developers. The goal is t
 
 ## Follow Us
 
-Enjoyed the project? Follow us on [LinkedIn](https://www.linkedin.com/company/welcome-developer) and [Twitter](https://twitter.com/welcomedevnz).
+Enjoyed the project? Follow us on [LinkedIn](https://www.linkedin.com/company/welcomedeveloper) and [Twitter](https://twitter.com/welcomedevnz).
