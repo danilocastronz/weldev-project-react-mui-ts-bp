@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   AppBar,
   Box,
@@ -9,8 +9,8 @@ import {
   Badge,
   Menu,
   MenuItem,
-} from "@mui/material";
-import { styled, alpha } from "@mui/material/styles";
+} from '@mui/material';
+import { styled, alpha } from '@mui/material/styles';
 
 import {
   Search as SearchIcon,
@@ -18,13 +18,13 @@ import {
   Mail as MailIcon,
   Notifications as NotificationsIcon,
   MoreVert as MoreIcon,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
-import { MenuButton } from "./MenuButton";
+import { MenuButton } from './MenuButton';
 
-import { APP_TITLE } from "../../utils/Constants";
-import { Search } from "./Search";
-import { Title } from "@mui/icons-material";
+import { APP_TITLE } from '../../utils/constants';
+import { Search } from './Search';
+import { Title } from '@mui/icons-material';
 
 export const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -51,19 +51,19 @@ export const Header = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = "primary-search-account-menu";
+  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       id={menuId}
       keepMounted
       transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
@@ -73,19 +73,19 @@ export const Header = () => {
     </Menu>
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
+  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
@@ -133,7 +133,7 @@ export const Header = () => {
           <Title />
           <Search />
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton
               size="large"
               aria-label="show 4 new mails"
@@ -164,7 +164,7 @@ export const Header = () => {
               <AccountIcon />
             </IconButton>
           </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="show more"

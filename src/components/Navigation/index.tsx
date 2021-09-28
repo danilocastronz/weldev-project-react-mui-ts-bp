@@ -1,11 +1,11 @@
 // components
-import { Menu } from "../Menu";
+import { Menu } from '../Menu';
 
 // constants
-import { DRAWER_WIDTH } from "../../utils/Constants";
+import { DRAWER_WIDTH } from '../../utils/constants';
 
-import { Drawer, IconButton } from "@mui/material";
-import { ChevronLeft } from "@mui/icons-material";
+import { Drawer, IconButton } from '@mui/material';
+import { ChevronLeft } from '@mui/icons-material';
 
 // // define css-in-js
 // const useStyles = makeStyles((theme: Theme) =>

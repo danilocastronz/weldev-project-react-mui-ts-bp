@@ -1,11 +1,11 @@
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
 
 // components
-import { PageTitle } from "../components/PageTitle";
-import { PageWrapper } from "../components/PageWrapper";
+import { PageTitle } from '../components/PageTitle';
+import { PageWrapper } from '../components/PageWrapper';
 
 // constants
-import { APP_TITLE, PAGE_TITLE_CODE } from "../utils/Constants";
+import { APP_TITLE, PAGE_TITLE_CODE } from '../utils/constants';
 
 export const CodeEditor = () => (
   <>

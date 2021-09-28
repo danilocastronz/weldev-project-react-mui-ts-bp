@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
-import Link from "@mui/material/Link";
+import styled from '@emotion/styled';
+import Link from '@mui/material/Link';
 
 // constants
-import { FOOTER_TEXT, FOOTER_HEIGHT } from "../../utils/Constants";
+import { FOOTER_TEXT, FOOTER_HEIGHT } from '../../utils/constants';
 
 export const Footer = () => (
   <FooterWrapper footerHeight={FOOTER_HEIGHT}>
