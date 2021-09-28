@@ -1,24 +1,21 @@
-import { useMemo } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useMemo } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
   createTheme,
   responsiveFontSizes,
   ThemeProvider as MuiThemeProvider,
-} from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
-import { Helmet } from "react-helmet";
-import { ThemeProvider } from "@emotion/react";
+} from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
+import { Helmet } from 'react-helmet';
+import { ThemeProvider } from '@emotion/react';
 
-import { AppContext, ThemeModeContext } from "./contexts";
-import { AppClient, ThemeModeClient } from "./clients";
+import { Layout, DefaultComponent } from './components';
 
-import { Layout, DefaultComponent } from "./components";
-
-import { routes } from "./config";
-
-import { APP_TITLE } from "./utils/Constants";
-
-import { Route as AppRoute } from "./types/Route";
+import { AppContext, ThemeModeContext } from './contexts';
+import { AppClient, ThemeModeClient } from './clients';
+import { routes } from './config';
+import { APP_TITLE } from './utils/constants';
+import { Route as AppRoute } from './types/Route';
 
 function App() {
   const appClient = new AppClient();
@@ -34,16 +31,14 @@ function App() {
     return theme;
   }, [themeModeClient.themeMode]);
 
-  const addRoute = (route: AppRoute) => {
-    return (
-      <Route
-        key={route.key}
-        path={route.path}
-        component={route.component || DefaultComponent}
-        exact
-      />
-    );
-  };
+  const addRoute = (route: AppRoute) => (
+    <Route
+      key={route.key}
+      path={route.path}
+      component={route.component || DefaultComponent}
+      exact
+    />
+  );
 
   return (
     <>

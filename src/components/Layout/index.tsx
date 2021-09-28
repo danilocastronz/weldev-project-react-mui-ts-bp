@@ -1,7 +1,6 @@
 import { FC } from "react";
 import styled from "@emotion/styled";
 
-// components
 import { Header } from "../Header";
 import { Footer } from "../Footer";
 

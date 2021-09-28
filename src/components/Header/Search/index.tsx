@@ -2,19 +2,17 @@ import styled from "@emotion/styled";
 import { alpha, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-export const Search = () => {
-  return (
-    <SearchBox>
-      <SearchIconWrapper>
-        <SearchIcon />
-      </SearchIconWrapper>
-      <StyledInputBase
-        placeholder="Search…"
-        inputProps={{ "aria-label": "search" }}
-      />
-    </SearchBox>
-  );
-};
+export const Search = () => (
+  <SearchBox>
+    <SearchIconWrapper>
+      <SearchIcon />
+    </SearchIconWrapper>
+    <StyledInputBase
+      placeholder="Search…"
+      inputProps={{ "aria-label": "search" }}
+    />
+  </SearchBox>
+);
 
 const SearchBox = styled("div")(({ theme }) => ({
   position: "relative",
@@ -32,15 +30,15 @@ const SearchBox = styled("div")(({ theme }) => ({
   },
 }));
 
-const SearchIconWrapper = styled.div`({ theme }) => `
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   padding: theme.spacing(0, 2),
   height: "100%",
   position: "absolute",
   pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-`)`;
+}));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
