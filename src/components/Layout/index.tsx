@@ -1,8 +1,8 @@
-import { FC } from "react";
-import styled from "@emotion/styled";
+import { FC } from 'react';
+import styled from '@emotion/styled';
 
-import { Header } from "../Header";
-import { Footer } from "../Footer";
+import { Header } from '../Header';
+import { Footer } from '../Footer';
 
 export const Layout: FC = ({ children }) => {
   return (

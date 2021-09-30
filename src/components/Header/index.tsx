@@ -1,19 +1,6 @@
 import * as React from 'react';
+import { AppBar, Box, Toolbar, IconButton, Badge, Menu, MenuItem } from '@mui/material';
 import {
-  AppBar,
-  Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  InputBase,
-  Badge,
-  Menu,
-  MenuItem,
-} from '@mui/material';
-import { styled, alpha } from '@mui/material/styles';
-
-import {
-  Search as SearchIcon,
   AccountCircle as AccountIcon,
   Mail as MailIcon,
   Notifications as NotificationsIcon,
@@ -21,15 +8,15 @@ import {
 } from '@mui/icons-material';
 
 import { MenuButton } from './MenuButton';
-
-import { APP_TITLE } from '../../utils/constants';
 import { Search } from './Search';
-import { Title } from '@mui/icons-material';
+import { Notifications } from './Notifications';
+import { Messages } from './Messages';
+import { UserLogin } from './UserLogin';
+import { Title } from './Title';
 
 export const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-    React.useState<null | HTMLElement>(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -52,6 +39,7 @@ export const Header = () => {
   };
 
   const menuId = 'primary-search-account-menu';
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -99,11 +87,7 @@ export const Header = () => {
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
+        <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
@@ -134,35 +118,9 @@ export const Header = () => {
           <Search />
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountIcon />
-            </IconButton>
+            <Messages total={15} />
+            <Notifications total={20} />
+            <UserLogin menuId={menuId} handleProfileMenuOpen={handleProfileMenuOpen} />
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton

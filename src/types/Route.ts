@@ -1,4 +1,4 @@
-import { ComponentType, FC } from "react";
+import { ComponentType, FC } from 'react';
 
 /**
  * Represents the route of a page.

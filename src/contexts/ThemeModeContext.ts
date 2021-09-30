@@ -1,10 +1,8 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
 export interface IThemeModeContext {
-  themeMode: "light" | "dark";
+  themeMode: 'light' | 'dark';
   toggleThemeMode: () => void;
 }
 
-export const ThemeModeContext = createContext<IThemeModeContext>(
-  {} as IThemeModeContext
-);
+export const ThemeModeContext = createContext<IThemeModeContext>({} as IThemeModeContext);

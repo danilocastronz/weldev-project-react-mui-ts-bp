@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer } from 'react';
 import {
   List,
   Divider,
@@ -9,14 +9,14 @@ import {
   Icon,
   Tooltip,
   IconButton,
-} from "@mui/material";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
+} from '@mui/material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
-import { MenuItem } from "./MenuItem";
+import { MenuItem } from './MenuItem';
 
-import { routes } from "../../config";
+import { routes } from '../../config';
 
-import { Route } from "../../types/Route";
+import { Route } from '../../types/Route';
 
 export const Menu = () => {
   const [isMenuOpen, toggleMenu] = useReducer((open) => !open, false);
@@ -29,15 +29,10 @@ export const Menu = () => {
             <>
               <ListItem button onClick={toggleMenu}>
                 <ListItemIcon>
-                  <IconButton size="small">
-                    {route.icon && <Icon component={route.icon} />}
-                  </IconButton>
+                  <IconButton size="small">{route.icon && <Icon component={route.icon} />}</IconButton>
                 </ListItemIcon>
                 <ListItemText primary={route.title} />
-                <Tooltip
-                  title={`${isMenuOpen ? "Collapse" : "Expand"}`}
-                  placement="bottom"
-                >
+                <Tooltip title={`${isMenuOpen ? 'Collapse' : 'Expand'}`} placement="bottom">
                   {isMenuOpen ? <ExpandLess /> : <ExpandMore />}
                 </Tooltip>
               </ListItem>

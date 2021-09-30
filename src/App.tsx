@@ -1,10 +1,6 @@
 import { useMemo } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import {
-  createTheme,
-  responsiveFontSizes,
-  ThemeProvider as MuiThemeProvider,
-} from '@mui/material/styles';
+import { createTheme, responsiveFontSizes, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { Helmet } from 'react-helmet';
 import { ThemeProvider } from '@emotion/react';
@@ -32,12 +28,7 @@ function App() {
   }, [themeModeClient.themeMode]);
 
   const addRoute = (route: AppRoute) => (
-    <Route
-      key={route.key}
-      path={route.path}
-      component={route.component || DefaultComponent}
-      exact
-    />
+    <Route key={route.key} path={route.path} component={route.component || DefaultComponent} exact />
   );
 
   return (
@@ -54,11 +45,7 @@ function App() {
                 <Switch>
                   <Layout>
                     {routes.map((route: AppRoute) =>
-                      route.subRoutes
-                        ? route.subRoutes.map((item: AppRoute) =>
-                            addRoute(item)
-                          )
-                        : addRoute(route)
+                      route.subRoutes ? route.subRoutes.map((item: AppRoute) => addRoute(item)) : addRoute(route)
                     )}
                   </Layout>
                 </Switch>

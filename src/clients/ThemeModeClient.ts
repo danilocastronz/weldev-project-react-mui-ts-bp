@@ -1,7 +1,7 @@
-import { IThemeModeContext } from "../contexts/ThemeModeContext";
+import { IThemeModeContext } from '../contexts/ThemeModeContext';
 
 class ThemeModeClient implements IThemeModeContext {
-  themeMode: "light" | "dark";
+  themeMode: 'light' | 'dark';
   toggleThemeMode: () => void;
 
   /**
@@ -9,9 +9,9 @@ class ThemeModeClient implements IThemeModeContext {
    * @memberof ThemeModeClient
    */
   constructor() {
-    this.themeMode = "light";
+    this.themeMode = 'light';
     this.toggleThemeMode = () => {
-      this.themeMode = this.themeMode === "light" ? "dark" : "light";
+      this.themeMode = this.themeMode === 'light' ? 'dark' : 'light';
     };
   }
 }

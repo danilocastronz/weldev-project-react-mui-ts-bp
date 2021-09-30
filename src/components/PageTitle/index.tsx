@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import Typography from "@mui/material/Typography";
+import styled from '@emotion/styled';
+import Typography from '@mui/material/Typography';
 
 export const PageTitle = ({ title }: { title: string }) => (
   <StyledPageTitle variant="h4" color="textSecondary">

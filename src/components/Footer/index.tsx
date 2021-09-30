@@ -1,18 +1,11 @@
 import styled from '@emotion/styled';
-import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 
-// constants
 import { FOOTER_TEXT, FOOTER_HEIGHT } from '../../utils/constants';
 
 export const Footer = () => (
   <FooterWrapper footerHeight={FOOTER_HEIGHT}>
-    <FooterTextLink
-      href={`${process.env.REACT_APP_API_URL}`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      {FOOTER_TEXT}
-    </FooterTextLink>
+    <FooterText variant="caption">{FOOTER_TEXT}</FooterText>
   </FooterWrapper>
 );
 
@@ -26,6 +19,7 @@ const FooterWrapper = styled.div<{ footerHeight: number }>(
 `
 );
 
-const FooterTextLink = styled(Link)`
+const FooterText = styled(Typography)`
+  word-spacing: 0.1rem;
   text-transform: uppercase;
 `;
