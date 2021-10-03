@@ -1,3 +1,5 @@
+![](logo.png)
+
 # React, TypeScript, and Material-UI boilerplate by Welcome, Developer
 
 ## Introduction
