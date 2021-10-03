@@ -1,34 +1,43 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createTheme, responsiveFontSizes, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { Helmet } from 'react-helmet';
 import { ThemeProvider } from '@emotion/react';
 
-import { Layout, DefaultComponent } from './components';
+import { Layout, PageDefault } from './components';
 
 import { AppContext, ThemeModeContext } from './contexts';
-import { AppClient, ThemeModeClient } from './clients';
+import { AppClient } from './clients';
 import { routes } from './config';
 import { APP_TITLE } from './utils/constants';
 import { Route as AppRoute } from './types/Route';
 
 function App() {
+  const [mode, setMode] = useState<'light' | 'dark'>('light');
   const appClient = new AppClient();
-  const themeModeClient = new ThemeModeClient();
+
+  const themeMode = useMemo(
+    () => ({
+      toggleThemeMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    []
+  );
 
   const theme = useMemo(() => {
     let theme = createTheme({
       palette: {
-        mode: themeModeClient.themeMode,
+        mode,
       },
     });
     theme = responsiveFontSizes(theme);
     return theme;
-  }, [themeModeClient.themeMode]);
+  }, [mode]);
 
   const addRoute = (route: AppRoute) => (
-    <Route key={route.key} path={route.path} component={route.component || DefaultComponent} exact />
+    <Route key={route.key} path={route.path} component={route.component || PageDefault} exact />
   );
 
   return (
@@ -37,7 +46,7 @@ function App() {
         <title>{APP_TITLE}</title>
       </Helmet>
       <AppContext.Provider value={appClient}>
-        <ThemeModeContext.Provider value={themeModeClient}>
+        <ThemeModeContext.Provider value={themeMode}>
           <MuiThemeProvider theme={theme}>
             <ThemeProvider theme={theme}>
               <CssBaseline />

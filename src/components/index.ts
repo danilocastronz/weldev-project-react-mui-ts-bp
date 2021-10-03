@@ -1,4 +1,4 @@
 import { Layout } from './Layout';
-import { DefaultComponent } from './DefaultComponent';
+import { PageDefault } from './PageDefault';
 
-export { Layout, DefaultComponent };
+export { Layout, PageDefault };

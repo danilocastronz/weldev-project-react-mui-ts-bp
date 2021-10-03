@@ -7,13 +7,9 @@ import { Footer } from '../Footer';
 export const Layout: FC = ({ children }) => {
   return (
     <LayoutWrapper>
-      <Header
-      // open={open}
-      // handleMenuOpen={toggle}
-      // toggleTheme={toggleTheme}
-      // useDefaultTheme={useDefaultTheme}
-      />
-      {/* <Navigation open={open} handleMenuClose={toggle} /> */}
+      <header>
+        <Header />
+      </header>
       <main>{children}</main>
       <footer>
         <Footer />
@@ -26,4 +22,5 @@ const LayoutWrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 `;

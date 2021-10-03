@@ -1,22 +1,20 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { AppBar, Box, Toolbar, IconButton, Badge, Menu, MenuItem } from '@mui/material';
 import {
   AccountCircle as AccountIcon,
   Mail as MailIcon,
   Notifications as NotificationsIcon,
-  MoreVert as MoreIcon,
 } from '@mui/icons-material';
 
-import { MenuButton } from './MenuButton';
+import { Hamburger } from './Hamburger';
 import { Search } from './Search';
-import { Notifications } from './Notifications';
-import { Messages } from './Messages';
-import { UserLogin } from './UserLogin';
-import { Title } from './Title';
+import { AppTitle } from './AppTitle';
+import { ThemeSwitcher } from './ThemeSwitcher';
+import { Messages, More, Notifications, UserAccount } from './Actions';
 
 export const Header = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -113,26 +111,18 @@ export const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <MenuButton />
-          <Title />
+          <Hamburger />
+          <AppTitle />
           <Search />
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex', alignItems: 'center' } }}>
+            <ThemeSwitcher />
             <Messages total={15} />
             <Notifications total={20} />
-            <UserLogin menuId={menuId} handleProfileMenuOpen={handleProfileMenuOpen} />
+            <UserAccount handleProfileMenuOpen={handleProfileMenuOpen} />
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
+            <More handleMobileMenuOpen={handleMobileMenuOpen} />
           </Box>
         </Toolbar>
       </AppBar>

@@ -1,7 +1,6 @@
 import { createContext } from 'react';
 
 export interface IThemeModeContext {
-  themeMode: 'light' | 'dark';
   toggleThemeMode: () => void;
 }
 
