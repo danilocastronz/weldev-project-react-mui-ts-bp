@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="43%" src="./react-logo-svg.svg" />
+  <img width="43%" src="./react-logo-png.png" />
 </p>
 
 
