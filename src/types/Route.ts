@@ -97,4 +97,16 @@ export type Route = {
    * false
    */
   appendDivider?: boolean;
+
+  /**
+   * Indicate of menu item is expanded
+   * @type {boolean}
+   * @memberof Route
+   * @optional
+   * @example
+   * true
+   * @default
+   * false
+   */
+  expanded?: boolean;
 };

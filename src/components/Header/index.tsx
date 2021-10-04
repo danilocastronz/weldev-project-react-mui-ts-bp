@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-import { AppBar, Box, Toolbar, IconButton, Badge, Menu, MenuItem } from '@mui/material';
-import {
-  AccountCircle as AccountIcon,
-  Mail as MailIcon,
-  Notifications as NotificationsIcon,
-} from '@mui/icons-material';
+import { AppBar, Box, Toolbar } from '@mui/material';
 
 import { Hamburger } from './Hamburger';
 import { Search } from './Search';
 import { AppTitle } from './AppTitle';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { Messages, More, Notifications, UserAccount } from './Actions';
+import { DefaultMenu, MobileMenu } from './Menu';
 
 export const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -23,93 +19,18 @@ export const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+  const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);
 
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const menuId = 'primary-search-account-menu';
-
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountIcon />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => setMobileMoreAnchorEl(event.currentTarget);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
           <Hamburger />
           <AppTitle />
@@ -117,17 +38,22 @@ export const Header = () => {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex', alignItems: 'center' } }}>
             <ThemeSwitcher />
-            <Messages total={15} />
-            <Notifications total={20} />
-            <UserAccount handleProfileMenuOpen={handleProfileMenuOpen} />
+            <Messages total={15} onClick={() => {}} />
+            <Notifications total={20} onClick={() => {}} />
+            <UserAccount onClick={handleProfileMenuOpen} />
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <More handleMobileMenuOpen={handleMobileMenuOpen} />
+            <More onClick={handleMobileMenuOpen} />
           </Box>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+      <MobileMenu
+        isMenuOpen={isMobileMenuOpen}
+        handleMenuOpen={handleMobileMenuOpen}
+        handleMenuClose={handleMobileMenuClose}
+        anchorEl={mobileMoreAnchorEl}
+      />
+      <DefaultMenu isMenuOpen={isMenuOpen} handleMenuClose={handleMenuClose} anchorEl={anchorEl} />
     </Box>
   );
 };

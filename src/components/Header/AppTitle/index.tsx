@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 import { APP_TITLE } from '../../../utils/constants';

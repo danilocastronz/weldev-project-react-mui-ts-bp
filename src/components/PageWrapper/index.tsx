@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 
-export const PageWrapper = styled.div`
+export const PageWrapper = styled('div')`
   flex: 1;
   display: flex;
   flex-direction: row;

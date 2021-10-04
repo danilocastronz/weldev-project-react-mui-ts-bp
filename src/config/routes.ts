@@ -2,10 +2,13 @@ import {
   Home as HomeIcon,
   BarChartOutlined as DashboardIcon,
   CodeOutlined as CodeIcon,
-  SettingsOutlined as SettingsIcon,
   GitHub as GitHubIcon,
   Public as PublicIcon,
   PublicOff as PrivateIcon,
+  AccountBoxRounded as UserIcon,
+  SettingsOutlined as SettingsIcon,
+  ListAlt as ListIcon,
+  LogoutRounded as LogoutIcon,
 } from '@mui/icons-material';
 
 import { Home } from '../pages/Home';
@@ -76,13 +79,41 @@ const routes: Array<Route> = [
     appendDivider: true,
   },
   {
-    key: 'router-settings',
-    title: 'Settings',
-    description: 'Settings',
-    path: '/settings',
+    key: 'router-my-account',
+    title: 'My Account',
+    description: 'My Account',
+    path: '/account',
     isEnabled: true,
     component: Settings,
-    icon: SettingsIcon,
+    icon: UserIcon,
+    subRoutes: [
+      {
+        key: 'router-settings',
+        title: 'Settings',
+        description: 'Account Settings',
+        path: '/account/settings',
+        isEnabled: true,
+        component: Settings,
+        icon: SettingsIcon,
+      },
+      {
+        key: 'router-preferences',
+        title: 'Preferences',
+        description: 'Account Preferences',
+        path: '/account/preferences',
+        isEnabled: true,
+        component: Settings,
+        icon: ListIcon,
+      },
+      {
+        key: 'router-logout',
+        title: 'Sign Out',
+        description: 'Sign Out',
+        path: '/account/sign-out',
+        isEnabled: true,
+        icon: LogoutIcon,
+      },
+    ],
   },
 ];
 

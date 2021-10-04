@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { createTheme, responsiveFontSizes, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { Helmet } from 'react-helmet';
-import { ThemeProvider } from '@emotion/react';
 
 import { Layout, PageDefault } from './components';
 
@@ -31,6 +30,17 @@ function App() {
       palette: {
         mode,
       },
+      transitions: {
+        duration: {
+          shortest: 150,
+          shorter: 200,
+          short: 250,
+          standard: 300,
+          complex: 375,
+          enteringScreen: 225,
+          leavingScreen: 195,
+        },
+      },
     });
     theme = responsiveFontSizes(theme);
     return theme;
@@ -47,20 +57,18 @@ function App() {
       </Helmet>
       <AppContext.Provider value={appClient}>
         <ThemeModeContext.Provider value={themeMode}>
-          <MuiThemeProvider theme={theme}>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Router>
-                <Switch>
-                  <Layout>
-                    {routes.map((route: AppRoute) =>
-                      route.subRoutes ? route.subRoutes.map((item: AppRoute) => addRoute(item)) : addRoute(route)
-                    )}
-                  </Layout>
-                </Switch>
-              </Router>
-            </ThemeProvider>
-          </MuiThemeProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Router>
+              <Switch>
+                <Layout>
+                  {routes.map((route: AppRoute) =>
+                    route.subRoutes ? route.subRoutes.map((item: AppRoute) => addRoute(item)) : addRoute(route)
+                  )}
+                </Layout>
+              </Switch>
+            </Router>
+          </ThemeProvider>
         </ThemeModeContext.Provider>
       </AppContext.Provider>
     </>

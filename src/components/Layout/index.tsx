@@ -1,8 +1,9 @@
 import { FC } from 'react';
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 
 import { Header } from '../Header';
 import { Footer } from '../Footer';
+import { Navigation } from '../Navigation';
 
 export const Layout: FC = ({ children }) => {
   return (
@@ -10,7 +11,10 @@ export const Layout: FC = ({ children }) => {
       <header>
         <Header />
       </header>
-      <main>{children}</main>
+      <main>
+        <Navigation open={true} handleClose={() => {}} />
+        {children}
+      </main>
       <footer>
         <Footer />
       </footer>
@@ -18,7 +22,7 @@ export const Layout: FC = ({ children }) => {
   );
 };
 
-const LayoutWrapper = styled.div`
+const LayoutWrapper = styled('div')`
   flex: 1;
   display: flex;
   flex-direction: column;

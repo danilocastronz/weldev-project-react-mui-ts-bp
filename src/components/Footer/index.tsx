@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 import { FOOTER_TEXT, FOOTER_HEIGHT } from '../../utils/constants';
@@ -9,7 +9,7 @@ export const Footer = () => (
   </FooterWrapper>
 );
 
-const FooterWrapper = styled.div<{ footerHeight: number }>(
+const FooterWrapper = styled('div')<{ footerHeight: number }>(
   (props) => `
     flex: 1;
     display: flex;

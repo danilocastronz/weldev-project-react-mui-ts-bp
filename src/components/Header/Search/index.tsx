@@ -1,5 +1,4 @@
-import styled from '@emotion/styled';
-import { alpha, InputBase } from '@mui/material';
+import { alpha, InputBase, styled } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 export const Search = () => (
