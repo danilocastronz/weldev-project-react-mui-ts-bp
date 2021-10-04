@@ -1,4 +1,7 @@
-![](logo.png)
+<p align="center">
+  <img width="43%" src="./react-logo-svg.svg" />
+</p>
+
 
 # React, TypeScript, and Material-UI boilerplate
 
