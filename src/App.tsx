@@ -1,77 +1,52 @@
 import { useMemo, useState } from 'react';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
-import { Helmet } from 'react-helmet';
 
 import { Layout, PageDefault } from './components';
 
 import { AppContext, ThemeModeContext } from './contexts';
 import { AppClient } from './clients';
 import { routes } from './config';
-import { APP_TITLE } from './utils/constants';
-import { Route as AppRoute } from './types/Route';
+import { Route as AppRoute } from './types';
+import { getAppTheme } from './styles/theme';
+import { DARK_MODE_THEME, LIGHT_MODE_THEME } from './utils/constants';
 
 function App() {
-  const [mode, setMode] = useState<'light' | 'dark'>('light');
+  const [mode, setMode] = useState<typeof LIGHT_MODE_THEME | typeof DARK_MODE_THEME>(LIGHT_MODE_THEME);
   const appClient = new AppClient();
 
   const themeMode = useMemo(
     () => ({
       toggleThemeMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        setMode((prevMode) => (prevMode === LIGHT_MODE_THEME ? DARK_MODE_THEME : LIGHT_MODE_THEME));
       },
     }),
     []
   );
 
-  const theme = useMemo(() => {
-    let theme = createTheme({
-      palette: {
-        mode,
-      },
-      transitions: {
-        duration: {
-          shortest: 150,
-          shorter: 200,
-          short: 250,
-          standard: 300,
-          complex: 375,
-          enteringScreen: 225,
-          leavingScreen: 195,
-        },
-      },
-    });
-    theme = responsiveFontSizes(theme);
-    return theme;
-  }, [mode]);
+  const theme = useMemo(() => getAppTheme(mode), [mode]);
 
   const addRoute = (route: AppRoute) => (
     <Route key={route.key} path={route.path} component={route.component || PageDefault} exact />
   );
 
   return (
-    <>
-      <Helmet>
-        <title>{APP_TITLE}</title>
-      </Helmet>
-      <AppContext.Provider value={appClient}>
-        <ThemeModeContext.Provider value={themeMode}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Router>
-              <Switch>
-                <Layout>
-                  {routes.map((route: AppRoute) =>
-                    route.subRoutes ? route.subRoutes.map((item: AppRoute) => addRoute(item)) : addRoute(route)
-                  )}
-                </Layout>
-              </Switch>
-            </Router>
-          </ThemeProvider>
-        </ThemeModeContext.Provider>
-      </AppContext.Provider>
-    </>
+    <AppContext.Provider value={appClient}>
+      <ThemeModeContext.Provider value={themeMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router>
+            <Switch>
+              <Layout>
+                {routes.map((route: AppRoute) =>
+                  route.subRoutes ? route.subRoutes.map((item: AppRoute) => addRoute(item)) : addRoute(route)
+                )}
+              </Layout>
+            </Switch>
+          </Router>
+        </ThemeProvider>
+      </ThemeModeContext.Provider>
+    </AppContext.Provider>
   );
 }
 

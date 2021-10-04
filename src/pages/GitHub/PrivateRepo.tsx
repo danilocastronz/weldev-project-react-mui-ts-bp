@@ -1,10 +1,8 @@
 import { Helmet } from 'react-helmet';
 
-// components
 import { PageTitle } from '../../components/PageTitle';
 import { PageWrapper } from '../../components/PageWrapper';
 
-// constants
 import { APP_TITLE, PAGE_TITLE_GH_PRIVATE } from '../../utils/constants';
 
 export const GitHubPrivate = () => (

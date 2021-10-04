@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, IconButton, ListItem, ListItemIcon, ListItemText, styled, Tooltip } from '@mui/material';
+import { Icon, IconButton, lighten, ListItem, ListItemIcon, ListItemText, styled, Tooltip } from '@mui/material';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import { Route } from '../../../../types';
@@ -50,7 +50,7 @@ const StyledListItem = styled(ListItem)<{ disabled: boolean }>`
 `;
 
 const StyledIconButton = styled(IconButton)<{ isSelected: boolean }>(({ isSelected, theme }) => ({
-  boxShadow: isSelected ? `0 0 0 2px ${theme.palette.primary.main}` : 'default',
+  boxShadow: isSelected ? `0 0 0 2px ${lighten(theme.palette.primary.main, 0.6)}` : 'default',
   transition: 'box-shadow 0.1s',
 }));
 
