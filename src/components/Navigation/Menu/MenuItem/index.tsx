@@ -1,31 +1,41 @@
-import React from 'react';
-import { Icon, IconButton, lighten, ListItemButton, ListItemIcon, ListItemText, styled, Tooltip } from '@mui/material';
+import React, { ComponentType } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { Icon, IconButton, lighten, ListItemButton, ListItemIcon, ListItemText, styled, Tooltip } from '@mui/material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
 import { Route } from '../../../../types';
-import { ComponentType } from 'react-router/node_modules/@types/react';
 
 interface MenuItemProps {
   route: Route;
   nested?: boolean;
+  hasChildren?: boolean;
+  handleMenuClick?: (route: Route) => void;
 }
 
-export const MenuItem = ({ route, nested = false }: MenuItemProps) => {
+export const MenuItem = ({ route, nested = false, hasChildren = false, handleMenuClick = () => {} }: MenuItemProps) => {
   const location = useLocation();
 
   const handleNavigate = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    if (!route.isEnabled) e.preventDefault();
+    if (!route.isEnabled || hasChildren) e.preventDefault();
   };
 
+  const isSelected =
+    location.pathname === route.path || (hasChildren && route.subRoutes?.some((e) => location.pathname === e.path));
+
   const item = (
-    <StyledListItem disabled={!route.isEnabled} sx={{ pl: nested ? 4 : 2 }}>
+    <StyledListItemButton
+      disabled={!route.isEnabled}
+      sx={{ pl: nested ? 4 : 2 }}
+      onClick={() => handleMenuClick(route)}
+    >
       <ListItemIcon>
         <StyledIconButton size="small" isSelected={location.pathname === route.path}>
-          {route.icon && <StyledIcon component={route.icon} isSelected={location.pathname === route.path} />}
+          {route.icon && <StyledIcon component={route.icon} isSelected={isSelected || false} />}
         </StyledIconButton>
       </ListItemIcon>
       <ListItemText primary={route.title} />
-    </StyledListItem>
+      {hasChildren && (route.expanded ? <ExpandLess /> : <ExpandMore />)}
+    </StyledListItemButton>
   );
 
   return (
@@ -46,7 +56,7 @@ const StyledNavLink = styled(NavLink)`
   color: inherit;
 `;
 
-const StyledListItem = styled(ListItemButton)<{ disabled: boolean }>(({ disabled }) => ({
+const StyledListItemButton = styled(ListItemButton)<{ disabled: boolean }>(({ disabled }) => ({
   '*': { cursor: disabled ? 'not-allowed' : 'default' },
 }));
 

@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
-import { Menu, MenuItem } from '@mui/material';
+import React from 'react';
+import { Box, Menu, MenuItem } from '@mui/material';
 
 import { Messages, Notifications, SignOut, Settings } from '../Actions';
 import { ThemeSwitcher } from '../ThemeSwitcher';
-
-import { ThemeModeContext } from '../../../contexts';
 
 interface MobileMenuProps {
   isMenuOpen: boolean;
@@ -14,7 +12,6 @@ interface MobileMenuProps {
 }
 
 export const MobileMenu = ({ isMenuOpen, handleMenuOpen, handleMenuClose, anchorEl }: MobileMenuProps) => {
-  const { toggleThemeMode } = useContext(ThemeModeContext);
   return (
     <Menu
       anchorEl={anchorEl}
@@ -31,22 +28,28 @@ export const MobileMenu = ({ isMenuOpen, handleMenuOpen, handleMenuClose, anchor
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>
-        <Messages total={15} disableTooltip />
-        Messages
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Notifications total={20} disableTooltip />
-        Notifications
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Settings disableTooltip />
-        Settings
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <SignOut disableTooltip />
-        Sign Out
-      </MenuItem>
+      <Box sx={{ textAlign: 'center' }}>
+        <MenuItem>
+          <ThemeSwitcher disableTooltip />
+          Toggle Theme
+        </MenuItem>
+        <MenuItem>
+          <Messages total={15} disableTooltip />
+          Messages
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Notifications total={20} disableTooltip />
+          Notifications
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Settings disableTooltip />
+          Settings
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <SignOut disableTooltip />
+          Sign Out
+        </MenuItem>
+      </Box>
     </Menu>
   );
 };

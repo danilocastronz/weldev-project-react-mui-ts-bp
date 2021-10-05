@@ -1,21 +1,20 @@
-import { styled } from '@mui/material';
-import Typography from '@mui/material/Typography';
+import { styled, Typography } from '@mui/material';
 
 import { FOOTER_TEXT, FOOTER_HEIGHT } from '../../utils/constants';
 
 export const Footer = () => (
-  <FooterWrapper footerHeight={FOOTER_HEIGHT}>
+  <FooterWrapper>
     <FooterText variant="caption">{FOOTER_TEXT}</FooterText>
   </FooterWrapper>
 );
 
-const FooterWrapper = styled('div')<{ footerHeight: number }>(
-  (props) => `
+const FooterWrapper = styled('div')(
+  ({ theme }) => `
     flex: 1;
     display: flex;
     justify-content: center;
-    background: ${props.theme.palette.background.paper};
-    minHeight: ${props.footerHeight};
+    background: ${theme.palette.background.paper};
+    minHeight: ${FOOTER_HEIGHT};
 `
 );
 

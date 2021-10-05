@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { Layout, PageDefault } from './components';
+import { Layout } from './components/Layout';
+import { PageDefault } from './components/PageDefault';
 
 import { AppContext, ThemeModeContext } from './contexts';
 import { AppClient } from './clients';

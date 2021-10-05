@@ -1,16 +1,18 @@
-import { alpha, InputBase, styled } from '@mui/material';
+import { alpha, InputBase, styled, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 export const Search = () => (
-  <SearchBox>
-    <SearchIconWrapper>
-      <SearchIcon />
-    </SearchIconWrapper>
-    <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
-  </SearchBox>
+  <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
+    <SearchWrapper>
+      <SearchIconWrapper>
+        <SearchIcon />
+      </SearchIconWrapper>
+      <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
+    </SearchWrapper>
+  </Box>
 );
 
-const SearchBox = styled('div')(({ theme }) => ({
+const SearchWrapper = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),

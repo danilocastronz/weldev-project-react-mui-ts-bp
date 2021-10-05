@@ -1,6 +1,9 @@
-import { Drawer, styled } from '@mui/material';
+import { Drawer as MuiDrawer, styled } from '@mui/material';
 
 import { Menu } from './Menu';
+
+import { DRAWER_WIDTH } from '../../utils/constants';
+import { navClosedMixin, navOpenedMixin } from '../../styles/mixins';
 
 interface NavigationProps {
   open: boolean | undefined;
@@ -17,6 +20,20 @@ export const Navigation = ({ open, handleClose }: NavigationProps) => {
 };
 
 const DrawerHeader = styled('div')(({ theme }) => ({
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
+}));
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
+  width: DRAWER_WIDTH,
+  flexShrink: 0,
+  whiteSpace: 'nowrap',
+  boxSizing: 'border-box',
+  ...(open && {
+    ...navOpenedMixin(theme),
+    '& .MuiDrawer-paper': navOpenedMixin(theme),
+  }),
+  ...(!open && {
+    ...navClosedMixin(theme),
+    '& .MuiDrawer-paper': navClosedMixin(theme),
+  }),
 }));

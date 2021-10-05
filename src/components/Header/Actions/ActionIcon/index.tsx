@@ -1,5 +1,5 @@
-import { Badge, Icon, useTheme } from '@mui/material';
 import { ComponentType } from 'react';
+import { Badge, Icon, useTheme } from '@mui/material';
 
 import { LIGHT_MODE_THEME } from '../../../../utils/constants';
 

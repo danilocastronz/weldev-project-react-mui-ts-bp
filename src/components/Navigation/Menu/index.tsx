@@ -1,38 +1,22 @@
-import { ComponentType, useState } from 'react';
-import {
-  List,
-  Divider,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Collapse,
-  Icon,
-  Tooltip,
-  IconButton,
-  styled,
-} from '@mui/material';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import { useState } from 'react';
+import { List, Divider, Collapse } from '@mui/material';
 
 import { MenuItem } from './MenuItem';
 
 import { routes } from '../../../config';
 import { Route } from '../../../types';
-import { useLocation } from 'react-router';
 
 export const Menu = () => {
-  const location = useLocation();
   const [routesState, setRoutesStage] = useState<Route[]>(routes);
 
   const handleMenuClick = (route: Route) => {
-    if (route.subRoutes) {
-      const items = routesState.map((item) => {
-        if (item.key === route.key) {
-          item.expanded = !item.expanded;
-        }
-        return item;
-      });
-      setRoutesStage(items);
-    }
+    const items = routesState.map((item) => {
+      if (item.key === route.key) {
+        item.expanded = !item.expanded;
+      }
+      return item;
+    });
+    setRoutesStage(items);
   };
 
   return (
@@ -41,22 +25,7 @@ export const Menu = () => {
         <>
           {route.subRoutes ? (
             <>
-              <ListItemButton onClick={() => handleMenuClick(route)}>
-                <ListItemIcon>
-                  <IconButton size="small">
-                    {route.icon && (
-                      <StyledIcon
-                        component={route.icon}
-                        isSelected={route.subRoutes.some((e) => location.pathname === e.path)}
-                      />
-                    )}
-                  </IconButton>
-                </ListItemIcon>
-                <ListItemText primary={route.title} />
-                <Tooltip title={`${route.expanded ? 'Collapse' : 'Expand'}`} placement="bottom">
-                  {route.expanded ? <ExpandLess /> : <ExpandMore />}
-                </Tooltip>
-              </ListItemButton>
+              <MenuItem key={`${route.key}`} route={route} hasChildren handleMenuClick={handleMenuClick} />
               <Collapse in={route.expanded} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {route.subRoutes.map((sRoute: Route) => (
@@ -74,7 +43,3 @@ export const Menu = () => {
     </List>
   );
 };
-
-const StyledIcon = styled(Icon)<{ isSelected: boolean; component: ComponentType<{}> }>(({ isSelected, theme }) => ({
-  color: isSelected ? theme.palette.primary.main : 'default',
-}));
