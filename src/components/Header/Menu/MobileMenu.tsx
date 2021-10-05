@@ -32,20 +32,20 @@ export const MobileMenu = ({ isMenuOpen, handleMenuOpen, handleMenuClose, anchor
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Messages total={15} />
-        <p>Messages</p>
+        <Messages total={15} disableTooltip />
+        Messages
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <Notifications total={20} />
-        <p>Notifications</p>
+        <Notifications total={20} disableTooltip />
+        Notifications
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <Settings />
-        <p>Settings</p>
+        <Settings disableTooltip />
+        Settings
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <SignOut />
-        <p>Sign Out</p>
+        <SignOut disableTooltip />
+        Sign Out
       </MenuItem>
     </Menu>
   );

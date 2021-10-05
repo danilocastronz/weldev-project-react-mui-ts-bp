@@ -12,11 +12,6 @@ import {
 } from '@mui/icons-material';
 
 import { Home } from '../pages/Home';
-import { Dashboard } from '../pages/Dashboard';
-import { GitHubPrivate } from '../pages/GitHub/PrivateRepo';
-import { GitHubPublic } from '../pages/GitHub/PublicRepo';
-import { CodeEditor } from '../pages/CodeEditor';
-import { Settings } from '../pages/Settings';
 
 import { Route } from '../types/Route';
 
@@ -26,9 +21,9 @@ const routes: Array<Route> = [
     key: 'router-home',
     title: 'Home',
     description: 'Home',
+    component: Home,
     path: '/',
     isEnabled: true,
-    component: Home,
     icon: HomeIcon,
     appendDivider: true,
   },
@@ -38,7 +33,6 @@ const routes: Array<Route> = [
     description: 'Dashboard',
     path: '/dashboard',
     isEnabled: true,
-    component: Dashboard,
     icon: DashboardIcon,
   },
   {
@@ -54,7 +48,6 @@ const routes: Array<Route> = [
         description: 'Public Repos',
         path: '/gh/public',
         isEnabled: true,
-        component: GitHubPublic,
         icon: PublicIcon,
       },
       {
@@ -63,7 +56,6 @@ const routes: Array<Route> = [
         description: 'Private Repos',
         path: '/gh/private',
         isEnabled: false,
-        component: GitHubPrivate,
         icon: PrivateIcon,
       },
     ],
@@ -74,7 +66,6 @@ const routes: Array<Route> = [
     description: 'Code Editor',
     path: '/code-editor',
     isEnabled: true,
-    component: CodeEditor,
     icon: CodeIcon,
     appendDivider: true,
   },
@@ -84,7 +75,6 @@ const routes: Array<Route> = [
     description: 'My Account',
     path: '/account',
     isEnabled: true,
-    component: Settings,
     icon: UserIcon,
     subRoutes: [
       {
@@ -93,7 +83,6 @@ const routes: Array<Route> = [
         description: 'Account Settings',
         path: '/account/settings',
         isEnabled: true,
-        component: Settings,
         icon: SettingsIcon,
       },
       {

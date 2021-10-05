@@ -1,30 +1,28 @@
 import React, { ComponentType } from 'react';
-import { Badge, Icon, IconButton, Tooltip, useTheme } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
+
+import { ActionIcon } from '../ActionIcon';
 
 interface ActionItemProps {
   title: string;
   icon: ComponentType;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   badgeContent?: number;
+  disableTooltip?: boolean;
 }
 
-export const ActionItem = ({ title, icon, onClick, badgeContent }: ActionItemProps) => {
-  const theme = useTheme();
-  return (
+export const ActionItem = ({ title, icon, onClick, badgeContent, disableTooltip = false }: ActionItemProps) => {
+  const buttonIcon = (
+    <IconButton size="large" color="inherit" onClick={onClick}>
+      <ActionIcon badgeContent={badgeContent} icon={icon} />
+    </IconButton>
+  );
+
+  return disableTooltip ? (
+    buttonIcon
+  ) : (
     <Tooltip title={title} placement="bottom" arrow>
-      {onClick ? (
-        <IconButton size="large" color="inherit" onClick={onClick}>
-          {badgeContent ? (
-            <Badge badgeContent={badgeContent} color={theme.palette.mode === 'light' ? 'error' : 'primary'}>
-              <Icon component={icon} />
-            </Badge>
-          ) : (
-            <Icon component={icon} />
-          )}
-        </IconButton>
-      ) : (
-        <Icon component={icon} />
-      )}
+      {buttonIcon}
     </Tooltip>
   );
 };

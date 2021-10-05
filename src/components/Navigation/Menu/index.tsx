@@ -2,7 +2,7 @@ import { ComponentType, useState } from 'react';
 import {
   List,
   Divider,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   Collapse,
@@ -36,12 +36,12 @@ export const Menu = () => {
   };
 
   return (
-    <List>
+    <List component="nav">
       {routesState.map((route: Route) => (
         <>
           {route.subRoutes ? (
             <>
-              <ListItem button onClick={() => handleMenuClick(route)}>
+              <ListItemButton onClick={() => handleMenuClick(route)}>
                 <ListItemIcon>
                   <IconButton size="small">
                     {route.icon && (
@@ -56,17 +56,17 @@ export const Menu = () => {
                 <Tooltip title={`${route.expanded ? 'Collapse' : 'Expand'}`} placement="bottom">
                   {route.expanded ? <ExpandLess /> : <ExpandMore />}
                 </Tooltip>
-              </ListItem>
+              </ListItemButton>
               <Collapse in={route.expanded} timeout="auto" unmountOnExit>
-                <List>
+                <List component="div" disablePadding>
                   {route.subRoutes.map((sRoute: Route) => (
-                    <MenuItem key={`${sRoute.key}`} route={sRoute} />
+                    <MenuItem key={`${sRoute.key}`} route={sRoute} nested />
                   ))}
                 </List>
               </Collapse>
             </>
           ) : (
-            <MenuItem key={route.key} route={route} />
+            <MenuItem key={route.key} route={route} nested={false} />
           )}
           {route.appendDivider && <Divider />}
         </>

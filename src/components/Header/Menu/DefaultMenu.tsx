@@ -11,16 +11,16 @@ interface DefaultMenuProps {
 export const DefaultMenu = ({ isMenuOpen, handleMenuClose, anchorEl }: DefaultMenuProps) => (
   <Menu anchorEl={anchorEl} id="primary-search-account-menu" keepMounted open={isMenuOpen} onClose={handleMenuClose}>
     <MenuItem onClick={handleMenuClose}>
-      <Settings />
+      <Settings disableTooltip />
       Settings
     </MenuItem>
     <MenuItem onClick={handleMenuClose}>
-      <Preferences />
+      <Preferences disableTooltip />
       Preferences
     </MenuItem>
     <Divider />
     <MenuItem onClick={handleMenuClose}>
-      <SignOut />
+      <SignOut disableTooltip />
       Sign Out
     </MenuItem>
   </Menu>

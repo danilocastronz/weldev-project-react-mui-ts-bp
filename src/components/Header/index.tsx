@@ -8,7 +8,11 @@ import { ThemeSwitcher } from './ThemeSwitcher';
 import { Messages, More, Notifications, UserAccount } from './Actions';
 import { DefaultMenu, MobileMenu } from './Menu';
 
-export const Header = () => {
+interface HeaderProps {
+  toggleNavigation: () => void;
+}
+
+export const Header = ({ toggleNavigation }: HeaderProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -32,7 +36,7 @@ export const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          <Hamburger />
+          <Hamburger toggleNavigation={toggleNavigation} />
           <AppTitle />
           <Search />
           <Box sx={{ flexGrow: 1 }} />
