@@ -1,77 +1,53 @@
-import React, { useReducer } from "react";
-import {
-  createMuiTheme,
-  Theme,
-  responsiveFontSizes,
-  ThemeProvider,
-} from "@material-ui/core/styles";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { useMemo, useState } from 'react';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-// components
-import Layout from "./components/Layout";
+import { Layout } from './components/Layout';
+import { PageDefault } from './components/PageDefault';
 
-// theme
-import { lightTheme, darkTheme } from "./theme/appTheme";
-
-// app routes
-import { routes } from "./config";
-
-// constants
-import { APP_TITLE } from "./utils/constants";
-
-// interfaces
-import RouteItem from "./model/RouteItem.model";
-
-// define app context
-const AppContext = React.createContext(null);
-
-// default component
-const DefaultComponent = () => <div>No Component Defined.</div>;
+import { AppContext, ThemeModeContext } from './contexts';
+import { AppClient } from './clients';
+import { routes } from './config';
+import { Route as AppRoute } from './types';
+import { getAppTheme } from './styles/theme';
+import { DARK_MODE_THEME, LIGHT_MODE_THEME } from './utils/constants';
 
 function App() {
-  const [useDefaultTheme, toggle] = useReducer((theme) => !theme, true);
+  const [mode, setMode] = useState<typeof LIGHT_MODE_THEME | typeof DARK_MODE_THEME>(DARK_MODE_THEME);
+  const appClient = new AppClient();
 
-  // define custom theme
-  let theme: Theme = createMuiTheme(useDefaultTheme ? lightTheme : darkTheme);
-  theme = responsiveFontSizes(theme);
+  const themeMode = useMemo(
+    () => ({
+      toggleThemeMode: () => {
+        setMode((prevMode) => (prevMode === LIGHT_MODE_THEME ? DARK_MODE_THEME : LIGHT_MODE_THEME));
+      },
+    }),
+    []
+  );
+
+  const theme = useMemo(() => getAppTheme(mode), [mode]);
+
+  const addRoute = (route: AppRoute) => (
+    <Route key={route.key} path={route.path} component={route.component || PageDefault} exact />
+  );
 
   return (
-    <>
-      <Helmet>
-        <title>{APP_TITLE}</title>
-      </Helmet>
-      <AppContext.Provider value={null}>
+    <AppContext.Provider value={appClient}>
+      <ThemeModeContext.Provider value={themeMode}>
         <ThemeProvider theme={theme}>
+          <CssBaseline />
           <Router>
             <Switch>
-              <Layout toggleTheme={toggle} useDefaultTheme={useDefaultTheme}>
-                {/* for each route config, a react route is created */}
-                {routes.map((route: RouteItem) =>
-                  route.subRoutes ? (
-                    route.subRoutes.map((item: RouteItem) => (
-                      <Route
-                        key={`${item.key}`}
-                        path={`${item.path}`}
-                        component={item.component || DefaultComponent}
-                        exact
-                      />
-                    ))
-                  ) : (
-                    <Route
-                      key={`${route.key}`}
-                      path={`${route.path}`}
-                      component={route.component || DefaultComponent}
-                      exact
-                    />
-                  )
+              <Layout>
+                {routes.map((route: AppRoute) =>
+                  route.subRoutes ? route.subRoutes.map((item: AppRoute) => addRoute(item)) : addRoute(route)
                 )}
               </Layout>
             </Switch>
           </Router>
         </ThemeProvider>
-      </AppContext.Provider>
-    </>
+      </ThemeModeContext.Provider>
+    </AppContext.Provider>
   );
 }
 
