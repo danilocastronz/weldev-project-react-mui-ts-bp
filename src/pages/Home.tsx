@@ -17,7 +17,7 @@ export const Home = () => {
           {PAGE_TITLE_HOME} | {APP_TITLE}
         </title>
       </Helmet>
-      <Typography variant="h3">{`Hello, ${context.user.name} 🎃`}</Typography>
+      <Typography variant="h4">{`Hello, ${context.user.name} 🎃`}</Typography>
       <LogoWrapper>
         <StyledLogo src={logo} alt="logo" />
       </LogoWrapper>
