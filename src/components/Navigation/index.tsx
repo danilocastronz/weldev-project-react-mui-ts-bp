@@ -1,6 +1,6 @@
 import { Drawer as MuiDrawer, styled } from '@mui/material';
 
-import { Menu } from './Menu';
+import { Routes } from './Routes';
 
 import { DRAWER_WIDTH } from '../../utils/constants';
 import { navClosedMixin, navOpenedMixin } from '../../styles/mixins';
@@ -14,7 +14,7 @@ export const Navigation = ({ open, handleClose }: NavigationProps) => {
   return (
     <Drawer variant="permanent" open={open} onClose={handleClose}>
       <DrawerHeader />
-      <Menu />
+      <Routes />
     </Drawer>
   );
 };

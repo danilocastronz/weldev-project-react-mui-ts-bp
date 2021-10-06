@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Box, Menu, MenuItem } from '@mui/material';
 
-import { Messages, Notifications, SignOut, Settings } from '../Actions';
+import { Messages, Notifications, SignOut, Settings } from '../../Actions';
 import { ThemeSwitcher } from '../ThemeSwitcher';
+import { ThemeModeContext } from '../../../contexts';
 
 interface MobileMenuProps {
   isMenuOpen: boolean;
@@ -12,6 +13,8 @@ interface MobileMenuProps {
 }
 
 export const MobileMenu = ({ isMenuOpen, handleMenuOpen, handleMenuClose, anchorEl }: MobileMenuProps) => {
+  const { toggleThemeMode } = useContext(ThemeModeContext);
+
   return (
     <Menu
       anchorEl={anchorEl}
@@ -29,11 +32,11 @@ export const MobileMenu = ({ isMenuOpen, handleMenuOpen, handleMenuClose, anchor
       onClose={handleMenuClose}
     >
       <Box sx={{ textAlign: 'center' }}>
-        <MenuItem>
+        <MenuItem onClick={toggleThemeMode}>
           <ThemeSwitcher disableTooltip />
           Toggle Theme
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={handleMenuClose}>
           <Messages total={15} disableTooltip />
           Messages
         </MenuItem>
@@ -46,7 +49,7 @@ export const MobileMenu = ({ isMenuOpen, handleMenuOpen, handleMenuClose, anchor
           Settings
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <SignOut disableTooltip />
+          <SignOut disableTooltip onClick={() => alert('Signing out...')} />
           Sign Out
         </MenuItem>
       </Box>

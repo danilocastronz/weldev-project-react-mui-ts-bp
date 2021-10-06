@@ -5,7 +5,7 @@ import { Hamburger } from './Hamburger';
 import { Search } from './Search';
 import { AppTitle } from './AppTitle';
 import { ThemeSwitcher } from './ThemeSwitcher';
-import { Messages, More, Notifications, UserAccount } from './Actions';
+import { Messages, More, Notifications, UserAccount } from '../Actions';
 import { DefaultMenu, MobileMenu } from './Menu';
 
 interface HeaderProps {

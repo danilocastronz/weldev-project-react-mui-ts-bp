@@ -4,7 +4,9 @@ import { FOOTER_TEXT, FOOTER_HEIGHT } from '../../utils/constants';
 
 export const Footer = () => (
   <FooterWrapper>
-    <FooterText variant="caption">{FOOTER_TEXT}</FooterText>
+    <FooterText variant="caption" color="textSecondary">
+      {FOOTER_TEXT}
+    </FooterText>
   </FooterWrapper>
 );
 

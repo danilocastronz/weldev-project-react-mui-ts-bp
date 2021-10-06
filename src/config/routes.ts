@@ -8,14 +8,13 @@ import {
   AccountBoxRounded as UserIcon,
   SettingsOutlined as SettingsIcon,
   ListAlt as ListIcon,
-  LogoutRounded as LogoutIcon,
+  CreditCard as BillingIcon,
 } from '@mui/icons-material';
 
 import { Home } from '../pages/Home';
 
 import { Route } from '../types/Route';
 
-// define app routes
 const routes: Array<Route> = [
   {
     key: 'router-home',
@@ -94,12 +93,12 @@ const routes: Array<Route> = [
         icon: ListIcon,
       },
       {
-        key: 'router-logout',
-        title: 'Sign Out',
-        description: 'Sign Out',
-        path: '/account/sign-out',
+        key: 'router-billing',
+        title: 'Billing',
+        description: 'Account Billing',
+        path: '/account/billing',
         isEnabled: true,
-        icon: LogoutIcon,
+        icon: BillingIcon,
       },
     ],
   },

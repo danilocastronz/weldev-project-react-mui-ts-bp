@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Flare, NightsStay } from '@mui/icons-material';
 
-import { ActionItem } from '../Actions/ActionItem';
+import { ActionItem } from '../../Actions/ActionItem';
 
 import { ThemeModeContext } from '../../../contexts';
 import { LIGHT_MODE_THEME } from '../../../utils/constants';

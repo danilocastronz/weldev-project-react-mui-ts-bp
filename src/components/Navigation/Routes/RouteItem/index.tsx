@@ -5,14 +5,19 @@ import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
 import { Route } from '../../../../types';
 
-interface MenuItemProps {
+interface RouteItemProps {
   route: Route;
   nested?: boolean;
   hasChildren?: boolean;
   handleMenuClick?: (route: Route) => void;
 }
 
-export const MenuItem = ({ route, nested = false, hasChildren = false, handleMenuClick = () => {} }: MenuItemProps) => {
+export const RouteItem = ({
+  route,
+  nested = false,
+  hasChildren = false,
+  handleMenuClick = () => {},
+}: RouteItemProps) => {
   const location = useLocation();
 
   const handleNavigate = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -24,8 +29,8 @@ export const MenuItem = ({ route, nested = false, hasChildren = false, handleMen
 
   const item = (
     <StyledListItemButton
-      disabled={!route.isEnabled}
-      sx={{ pl: nested ? 4 : 2 }}
+      isEnabled={route.isEnabled}
+      sx={{ pl: nested ? 3 : 1 }}
       onClick={() => handleMenuClick(route)}
     >
       <ListItemIcon>
@@ -56,9 +61,9 @@ const StyledNavLink = styled(NavLink)`
   color: inherit;
 `;
 
-const StyledListItemButton = styled(ListItemButton)<{ disabled: boolean }>(({ disabled }) => ({
-  '*': { cursor: disabled ? 'not-allowed' : 'default' },
-}));
+const StyledListItemButton = styled(ListItemButton)<{ isEnabled: boolean }>(({ theme, isEnabled }) =>
+  !isEnabled ? { '*': { cursor: 'not-allowed', color: theme.palette.text.secondary } } : {}
+);
 
 const StyledIconButton = styled(IconButton)<{ isSelected: boolean }>(({ isSelected, theme }) => ({
   boxShadow: isSelected ? `0 0 0 2px ${lighten(theme.palette.primary.main, 0.6)}` : 'default',
