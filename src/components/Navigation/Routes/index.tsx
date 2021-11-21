@@ -24,7 +24,7 @@ export const Routes = () => {
     <>
       <List component="nav" sx={{ height: '100%' }}>
         {routesState.map((route: Route) => (
-          <>
+          <div key={route.key}>
             {route.subRoutes ? (
               <>
                 <RouteItem key={`${route.key}`} route={route} hasChildren handleMenuClick={handleMenuClick} />
@@ -40,7 +40,7 @@ export const Routes = () => {
               <RouteItem key={route.key} route={route} nested={false} />
             )}
             {route.appendDivider && <Divider />}
-          </>
+          </div>
         ))}
       </List>
       <SignOutRoute />
