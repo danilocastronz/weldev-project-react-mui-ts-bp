@@ -26,7 +26,7 @@ The following frameworks/libraries have been implemented:
 
 1. [React](https://reactjs.org/)
 2. [TypeScript](https://www.typescriptlang.org/)
-3. [Material-UI](https://mui.com/)
+3. [MUI](https://mui.com/)
 4. [React Router](https://reactrouter.com/)
 5. [Prettier](https://prettier.io)
 6. [ESLint](https://eslint.org/)
@@ -49,7 +49,7 @@ Contributions are more than welcome to our repository, developers. The goal is t
 
 - 1.00 - Admin template with sample pages, top bar, navigation menu, and footer.
 - 1.10 - Added Prettier, ESLint, and a bit of code refactoring.
-- 2.00 - Updated to Material-UI version 5.0.1.
+- 2.00 - Updated to MUI version 5.0.1.
 
 ## Author
 
