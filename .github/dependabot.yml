@@ -1,0 +1,21 @@
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      # Check for updates to GitHub Actions every weekday
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    commit-message:
+      # Prefix all commit messages with "npm"
+      prefix: "npm"
+    # Specify labels for npm pull requests
+    labels:
+      - "npm"
+      - "dependencies"

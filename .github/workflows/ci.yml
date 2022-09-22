@@ -1,0 +1,48 @@
+name: Main Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v10.1
+        id: verify-changed-files
+        with:
+          files: |
+            src/**/*.{js,jsx,ts,tsx}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+
+      - name: Install dependencies
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        run: |
+          yarn install
+
+      - name: Run linter
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        run: |
+          yarn lint
+
+      - name: Run formatter
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        run: |
+          yarn format
+
+      - name: Run tests
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        run: |
+          yarn test:all
