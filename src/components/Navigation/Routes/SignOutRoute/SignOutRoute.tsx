@@ -1,5 +1,7 @@
-import { ListItemButton, ListItemIcon, ListItemText, IconButton, styled } from '@mui/material';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import ExitToApp from '@mui/icons-material/ExitToApp';
+import { IconButton, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
 export const SignOutRoute = () => {
 	const handleSignOutClick = () => {
@@ -7,19 +9,20 @@ export const SignOutRoute = () => {
 	};
 
 	return (
-		<StyledListItemButton onClick={handleSignOutClick}>
+		<ListItemButton
+			css={css`
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+			`}
+			onClick={handleSignOutClick}
+		>
 			<ListItemIcon>
 				<IconButton size='small'>
 					<ExitToApp />
 				</IconButton>
 			</ListItemIcon>
 			<ListItemText primary='Sign Out' />
-		</StyledListItemButton>
+		</ListItemButton>
 	);
 };
-
-const StyledListItemButton = styled(ListItemButton)`
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-`;

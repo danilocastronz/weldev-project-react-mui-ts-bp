@@ -1,25 +1,30 @@
-import { Button, styled, Typography } from '@mui/material';
-import { Link, NavLink } from 'react-router-dom';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { Typography } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 import { APP_TITLE } from '../../../utils/constants';
 
 export const AppTitle = () => (
-	<StyledNavLink to='/'>
-		<StyledAppTitle variant='h6' noWrap>
+	<NavLink
+		to='/'
+		css={css`
+			text-decoration: none;
+			color: inherit;
+		`}
+	>
+		<Typography
+			variant='h6'
+			noWrap
+			css={css`
+				display: {
+					xs: none;
+					sm: block;
+				}
+				cursor: pointer;
+			`}
+		>
 			{APP_TITLE}
-		</StyledAppTitle>
-	</StyledNavLink>
+		</Typography>
+	</NavLink>
 );
-
-const StyledAppTitle = styled(Typography)`
-	display: {
-		xs: none;
-		sm: block;
-	}
-	cursor: pointer;
-`;
-
-const StyledNavLink = styled(NavLink)`
-	text-decoration: none;
-	color: inherit;
-`;

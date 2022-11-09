@@ -1,11 +1,16 @@
-import { styled, Typography } from '@mui/material';
+/** @jsxImportSource @emotion/react */
+import { Typography } from '@mui/material';
+import { css } from '@emotion/react';
 
 export const PageTitle = ({ title }: { title: string }) => (
-	<StyledPageTitle variant='h2' component='h3' color='textSecondary'>
+	<Typography
+		css={css`
+			text-transform: uppercase;
+		`}
+		variant='h2'
+		component='h3'
+		color='textSecondary'
+	>
 		{title}
-	</StyledPageTitle>
+	</Typography>
 );
-
-const StyledPageTitle = styled(Typography)<{ component: string }>`
-	text-transform: uppercase;
-`;
