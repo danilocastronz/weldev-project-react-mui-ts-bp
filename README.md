@@ -2,11 +2,11 @@
   <img width="43%" src="./react-logo-png.png" />
 </p>
 
-# React, TypeScript, and Material-UI boilerplate
+# React, TypeScript, and MUI boilerplate
 
 ## Introduction
 
-Welcome to the first app template built by [Welcome, Developer](https://www.welcomedeveloper.com)! This is a boilerplate app built using React, TypeScript, Material-UI, and uses the concept of CSS-in-JS. It has the purpose of supporting our post exercises, but also to provide our followers with a good start point when building React applications.
+Welcome to the first app template built by [Welcome, Developer](https://www.welcomedeveloper.com)! This is a boilerplate app built using React, TypeScript, MUI, and uses the concept of CSS-in-JS. It has the purpose of supporting our post exercises, but also to provide our followers with a good start point when building React applications.
 
 Hope you enjoy it, developers!
 
@@ -18,7 +18,7 @@ Keen to see the app in action? Check it out the [live demo](https://weldev-react
 
 Interested in learning how the app was built from scratch step-by-step on version 1.00? Check [it out](https://www.welcomedeveloper.com/react-typescript-material-design), developers!
 
-The versions that followed the first one, 1.10 and 2.00, consist of adding coding formatting libraries (ESLint and Prettier), and updating the Material-UI library to its latest version (v5.0.1). I highly recommend you to explore the tutorial above to learn how the app was built.
+The versions that followed the first one, 1.10 and 2.00, consist of adding coding formatting libraries (ESLint and Prettier), and updating the MUI library to its latest version (v5.0.1). I highly recommend you to explore the tutorial above to learn how the app was built.
 
 ## Features
 
